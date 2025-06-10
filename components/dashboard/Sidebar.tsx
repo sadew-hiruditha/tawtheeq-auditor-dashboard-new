@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FileText,
-  Users,
+  // Users,
   BarChart,
   LogOut,
 } from "lucide-react";
@@ -16,8 +16,8 @@ const Sidebar = () => {
 
   const navLinks = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-    { href: "/contracts", icon: FileText, label: "Contracts" },
-    { href: "/users", icon: Users, label: "Users" },
+    { href: "/legalReviews", icon: FileText, label: "Legal Review" },
+    // { href: "/users", icon: Users, label: "Users" },
     { href: "/reports", icon: BarChart, label: "Reports" },
   ];
 

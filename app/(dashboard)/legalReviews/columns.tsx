@@ -1,10 +1,11 @@
-// file: app/(dashboard)/contracts/columns.tsx
+// file: app/(dashboard)/legalReviews/columns.tsx
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,6 +37,15 @@ export const columns: ColumnDef<Contract>[] = [
   {
     accessorKey: "id",
     header: "ID",
+    // CORRECTED: The cell property is now inside the column definition object
+    cell: ({ row }) => {
+      const id = row.getValue("id") as string;
+      return (
+        <Link href={`/legalReviews/${id}`} className="hover:underline text-blue-600 font-medium">
+          {id}
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "title",
@@ -54,11 +64,11 @@ export const columns: ColumnDef<Contract>[] = [
     },
   },
   {
-    accessorKey: "Originator",
+    accessorKey: "originator", // Use lowercase for accessorKey to match data type
     header: "Originator",
   },
   {
-    accessorKey: "Responder",
+    accessorKey: "responder", // Use lowercase for accessorKey
     header: "Responder",
   },
   {
@@ -79,11 +89,15 @@ export const columns: ColumnDef<Contract>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            {/* Updated action to be more relevant */}
+            <DropdownMenuItem>
+                <Link href={`/legalReviews/${contract.id}`}>
+                    Start Review
+                </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => navigator.clipboard.writeText(contract.id)}>
               Copy Contract ID
             </DropdownMenuItem>
-            <DropdownMenuItem>View details</DropdownMenuItem>
-            <DropdownMenuItem>Review contract</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

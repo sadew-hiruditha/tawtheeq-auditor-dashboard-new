@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FileText, Users, BarChart } from "lucide-react";
+import { LayoutDashboard, FileText, BarChart } from "lucide-react";
 
 export const BottomNavBar = () => {
   const pathname = usePathname();
@@ -11,8 +11,8 @@ export const BottomNavBar = () => {
   // We can use the same navLinks array or a simplified version for mobile
   const navLinks = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-    { href: "/contracts", icon: FileText, label: "Contracts" },
-    { href: "/users", icon: Users, label: "Users" },
+    { href: "/legalReviews", icon: FileText, label: "Legal legalReviews" },
+    // { href: "/users", icon: Users, label: "Users" },
     { href: "/reports", icon: BarChart, label: "Reports" },
   ];
 
