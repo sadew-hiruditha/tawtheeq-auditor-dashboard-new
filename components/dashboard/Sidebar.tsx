@@ -1,17 +1,18 @@
 // file: components/dashboard/Sidebar.tsx
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FileText,
   Users,
   BarChart,
-  // Settings,
   LogOut,
 } from "lucide-react";
 
 const Sidebar = () => {
-  // Placeholder for active path logic
-  const currentPath = "/dashboard";
+  const pathname = usePathname();
 
   const navLinks = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -21,10 +22,10 @@ const Sidebar = () => {
   ];
 
   return (
+    // This sidebar is hidden on screens smaller than md
     <aside className="hidden w-64 flex-col bg-gray-50 p-4 md:flex border-r">
       <div className="flex-grow">
         <div className="mb-8 flex items-center gap-2">
-          {/* You can replace this with your actual logo */}
           <FileText className="h-8 w-8 text-blue-600" />
           <h1 className="text-xl font-bold text-gray-800">Tawtheeq</h1>
         </div>
@@ -34,7 +35,9 @@ const Sidebar = () => {
               key={link.href}
               href={link.href}
               className={`flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:bg-gray-100 hover:text-gray-900 ${
-                currentPath === link.href ? "bg-gray-200 text-gray-900" : ""
+                pathname === link.href
+                  ? "bg-gray-200 text-gray-900 font-semibold"
+                  : ""
               }`}
             >
               <link.icon className="h-4 w-4" />
@@ -44,10 +47,9 @@ const Sidebar = () => {
         </nav>
       </div>
       <div className="border-t pt-4">
-         {/* Placeholder for user info and logout */}
-        <div className="flex items-center gap-3 rounded-lg px-3 py-2">
+        <div className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:bg-gray-100 hover:text-gray-900">
           <LogOut className="h-4 w-4" />
-          <span className="text-gray-600">Logout</span>
+          <span>Logout</span>
         </div>
       </div>
     </aside>
