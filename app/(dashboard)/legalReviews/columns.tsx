@@ -35,21 +35,16 @@ const getStatusBadgeVariant = (status: Contract["status"]) => {
 
 export const columns: ColumnDef<Contract>[] = [
   {
-    accessorKey: "id",
-    header: "ID",
-    // CORRECTED: The cell property is now inside the column definition object
+    accessorKey: "title",
+    header: "Title",
     cell: ({ row }) => {
-      const id = row.getValue("id") as string;
+      const title = row.getValue("title") as string;
       return (
-        <Link href={`/legalReviews/${id}`} className="hover:underline text-blue-600 font-medium">
-          {id}
+        <Link href={`/legalReviews/CTR-001`} className="hover:underline text-blue-600 font-medium">
+          {title}
         </Link>
       );
     },
-  },
-  {
-    accessorKey: "title",
-    header: "Title",
   },
   {
     accessorKey: "status",
@@ -64,11 +59,11 @@ export const columns: ColumnDef<Contract>[] = [
     },
   },
   {
-    accessorKey: "originator", // Use lowercase for accessorKey to match data type
+    accessorKey: "originator",
     header: "Originator",
   },
   {
-    accessorKey: "responder", // Use lowercase for accessorKey
+    accessorKey: "responder",
     header: "Responder",
   },
   {
@@ -89,11 +84,10 @@ export const columns: ColumnDef<Contract>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            {/* Updated action to be more relevant */}
             <DropdownMenuItem>
-                <Link href={`/legalReviews/${contract.id}`}>
-                    Start Review
-                </Link>
+              <Link href={`/legalReviews/${contract.id}`}>
+                Start Review
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => navigator.clipboard.writeText(contract.id)}>
               Copy Contract ID

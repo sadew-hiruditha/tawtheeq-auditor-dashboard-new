@@ -23,7 +23,7 @@ const contracts: Contract[] = [
     fileUrl: "/sample-contract.pdf",
   },
   {
-    id: "CTR-002",
+    id: "CTR-001",
     title: "Mobile App Development",
     originator: "Tech Solutions LLC",
     responder: "Bob Williams",
@@ -32,7 +32,7 @@ const contracts: Contract[] = [
     fileUrl: "/sample-contract.pdf", // In a real app, each would have a unique URL
   },
    {
-    id: "CTR-003",
+    id: "CTR-001",
     title: "Brand Logo Design",
     originator: "Creative Minds",
     responder: "Charlie Brown",

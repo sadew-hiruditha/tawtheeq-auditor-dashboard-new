@@ -8,53 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 
-// In the future, this data will come from your database
-const contracts = [
-  {
-    id: "CTR-001",
-    title: "Website Redesign",
-    originator: "Innovate Inc.",
-    responder: "Alice Johnson",
-    status: "Completed",
-    date: "2024-05-15",
-  },
-  {
-    id: "CTR-002",
-    title: "Mobile App Development",
-    originator: "Tech Solutions LLC",
-    responder: "Bob Williams",
-    status: "Pending",
-    date: "2024-05-20",
-  },
-  {
-    id: "CTR-003",
-    title: "Brand Logo Design",
-    originator: "Creative Minds",
-    responder: "Charlie Brown",
-    status: "Disputed",
-    date: "2024-05-18",
-  },
-  {
-    id: "CTR-004",
-    title: "SEO Optimization",
-    originator: "Marketing Pro",
-    responder: "Diana Miller",
-    status: "Completed",
-    date: "2024-05-22",
-  },
-  {
-    id: "CTR-005",
-    title: "Cloud Migration",
-    originator: "Global Corp",
-    responder: "Ethan Davis",
-    status: "Pending",
-    date: "2024-05-25",
-  },
-];
-
-export const RecentContractsTable = () => {
+export const RecentContractsTable = ({ contracts }: { contracts: { contract_name: string; contract_type: string; originator: string; responder: string; status: string; date: string }[] }) => {
   const getStatusBadgeVariant = (status: string) => {
     switch (status) {
       case "Completed":
@@ -72,8 +27,8 @@ export const RecentContractsTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">ID</TableHead>
-          <TableHead>Title</TableHead>
+          <TableHead>Contract Name</TableHead>
+          <TableHead>Contract Type</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Originator</TableHead>
           <TableHead>Responder</TableHead>
@@ -82,9 +37,9 @@ export const RecentContractsTable = () => {
       </TableHeader>
       <TableBody>
         {contracts.map((contract) => (
-          <TableRow key={contract.id}>
-            <TableCell className="font-medium">{contract.id}</TableCell>
-            <TableCell>{contract.title}</TableCell>
+          <TableRow key={contract.contract_name}>
+            <TableCell>{contract.contract_name}</TableCell>
+            <TableCell>{contract.contract_type}</TableCell>
             <TableCell>
               <Badge variant={getStatusBadgeVariant(contract.status)}>
                 {contract.status}
@@ -95,6 +50,11 @@ export const RecentContractsTable = () => {
             <TableCell className="text-right">{contract.date}</TableCell>
           </TableRow>
         ))}
+        {contracts.length === 0 && (
+          <TableRow>
+            <TableCell colSpan={6} className="text-center">No recent contracts found.</TableCell>
+          </TableRow>
+        )}
       </TableBody>
     </Table>
   );

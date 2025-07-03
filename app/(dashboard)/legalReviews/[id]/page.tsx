@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic';
 import { getContractById } from "@/lib/mock-data"; // Import our new data fetching function
 import { useEffect, useState } from "react";
 import type { Contract } from "@/lib/mock-data";
+import { use } from "react";
 
 // Dynamically import the PdfViewer with SSR turned off
 const PdfViewer = dynamic(() => 
@@ -19,21 +20,20 @@ const PdfViewer = dynamic(() =>
     }
 );
 
-export default function ReviewPage({ params }: { params: { id: string } }) {
+export default function ReviewPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [contract, setContract] = useState<Contract | null>(null);
 
-  // Fetch the specific contract data when the component mounts
   useEffect(() => {
     const fetchContract = async () => {
-      const data = await getContractById(params.id);
+      const data = await getContractById(id);
       if (data) {
         setContract(data);
       }
     };
     fetchContract();
-  }, [params.id]);
+  }, [id]);
 
-  // Show a loading state while fetching data
   if (!contract) {
     return <div className="p-6">Loading contract details...</div>;
   }
@@ -42,7 +42,7 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
     <div className="h-[calc(100vh-8rem)] flex flex-col">
       <div className="flex items-center gap-4 mb-4 shrink-0">
         <Link href="/legalReviews"><Button variant="outline" size="icon"><ArrowLeft className="h-4 w-4" /></Button></Link>
-        <h1 className="text-xl font-semibold">Reviewing Contract: {params.id}</h1>
+        <h1 className="text-xl font-semibold">Reviewing Contract: {id}</h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow overflow-hidden">
         <div className="lg:col-span-2 h-full overflow-y-auto">
