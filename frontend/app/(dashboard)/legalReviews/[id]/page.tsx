@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import type { Contract } from "@/lib/mock-data";
 import { PdfAnnotation } from "@/lib/annotation-manager";
 import { use } from "react";
+//..
 
 // Dynamically import the AdvancedPdfViewer with SSR turned off
 const AdvancedPdfViewer = dynamic(() => 
