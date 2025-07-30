@@ -18,8 +18,6 @@
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
     "@react-pdf-viewer/highlight": "^3.12.0",
-    "@react-pdf-viewer/selection-mode": "^3.12.0",
-    "@react-pdf-viewer/toolbar": "^3.12.0",
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -41,7 +39,6 @@
     "eslint-config-next": "15.3.3",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.4",
-    "typescript": "^5",
-    "worker-loader": "^3.0.8"
+    "typescript": "^5"
   }
 }
